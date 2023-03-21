@@ -22,10 +22,11 @@ function ToDoCard(props) {
     let today = new Date().toISOString().slice(0, 10);
     console.log("today:", today);
 
-    let result = await props.checkTodo(evt.target.parentNode.id, {last_checked: today});
+  const isChecked = checked || props.is_checked
+  let result = await props.checkTodo(evt.target.parentNode.id, {is_checked: !isChecked, last_checked: today});
     if (result.success) {
       console.debug("Updated successfully" );
-      setChecked(true);
+      setChecked(!isChecked);
     } else {
       console.log("Update failed:", result.errors);
     }
@@ -42,17 +43,17 @@ function ToDoCard(props) {
     }
   }
 
+  const isChecked = checked || props.is_checked
   return (
-      <div className="ToDoCard card m-4">
-        <div id={props.id} className="card-body">
+      <div className={`ToDoCard card m-4 ${isChecked ? " checked" : ""}`}>
+        <div id={props.id} className="card-body"> 
           <h5 className="card-title">{props.title}</h5>
           <p>{props.habit_description}</p>
           <button
               className="btn btn-warning font-weight-bold text-uppercase float-right mx-3"
               onClick={handleCheck}
-              disabled={checked || props.done}
           >
-            {checked || props.done ? "Done" : "Check"}
+            {isChecked ? "Uncheck" : "Check"}
           </button>
           <button
               className="btn btn-secondary font-weight-bold mx-3"

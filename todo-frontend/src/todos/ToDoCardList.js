@@ -63,6 +63,8 @@ function ToDoCardList() {
                 id={todo.id}
                 username={todo.username}
                 title={todo.title}
+                is_checked={todo.is_checked}
+                last_checked={todo.last_checked}
                 habit_description={todo.habit_description}
                 deleteTodoById={deleteTodoById}
                 checkTodo={checkTodoById}

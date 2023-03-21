@@ -23,8 +23,10 @@ class Todo {
                              username)
            VALUES ($1, $2, $3)
            RETURNING id,
-                    username,
                     title, 
+                    last_checked,
+                    is_checked,
+                    username,                    
                     habit_description`,
         [
           data.title,
@@ -32,7 +34,7 @@ class Todo {
           data.username,
         ]);
     let todo = result.rows[0];
-
+    
     return todo;
   }
 
@@ -46,7 +48,9 @@ static async get(username, id) {
           `SELECT id,
                   username,
                   title,
-                  habit_description
+                  habit_description,
+                  last_checked,
+                  is_checked
            FROM todos
            WHERE username=$1 AND id = $2`, [username, id]);
 
@@ -81,7 +85,9 @@ static async get(username, id) {
         `SELECT id,
                 username,
                 title,
-                habit_description
+                habit_description,
+                is_checked,
+                last_checked
          FROM todos
         WHERE username = $1`, [username]);
     return todosRes.rows;
@@ -103,6 +109,8 @@ static async get(username, id) {
                       WHERE id = ${idVarIdx} 
                       RETURNING id, 
                                 username,
+                                last_checked,
+                                is_checked,
                                 title, 
                                 habit_description`;
     const result = await db.query(querySql, [...values, id]);
@@ -111,6 +119,22 @@ static async get(username, id) {
     if (!todo) throw new NotFoundError(`No todo: ${id}`);
     return todo;
   }
+  
+  static async checkTodo(id, username, data) {
+    let result;
+    let todo = await this.get(username, id);
+    if (username != todo.username) {
+    if (!todo) throw new NotFoundError(`No todo: ${id}`);
+    }
+    // if a todo is new and streak didn't start
+    result = await this.update(id, {
+      last_checked: data.last_checked,
+      is_checked: data.is_checked,
+    });
+    return result;
+    
+  }
 }
+  
 
 module.exports = Todo;

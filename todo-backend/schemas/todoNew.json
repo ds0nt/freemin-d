@@ -9,7 +9,9 @@
         {
             "title": "Read a book",
             "habit_description": "30 minutes every night",
-            "username": "testuser"
+            "username": "testuser",
+            "last_checked": null,
+            "is_checked": "false"
         }
     ],
     "required": [
@@ -45,6 +47,27 @@
             "default": "",
             "examples": [
                 "testuser"
+            ]
+        },
+        "last_checked": {
+            "$id": "#/properties/last_checked",
+            "type": "string",
+            "format": "date",
+            "title": "The last_checked schema",
+            "description": "last_checked",
+            "default": "1900-01-01",
+            "examples": [
+                "1900-01-01"
+            ]
+        },
+        "is_checked": {
+            "$id": "#/properties/is_checked",
+            "type": "boolean",
+            "title": "The is_checked schema",
+            "description": "is it checked.",
+            "default": false,
+            "examples": [
+                false
             ]
         }
     

@@ -8,7 +8,9 @@
     "examples": [
         {
             "title": "Read a book",
-            "habit_description": "Read for 30 minutes"
+            "habit_description": "Read for 30 minutes",
+            "last_checked": null,
+            "is_checked": "false"
         }
     ],
     "required": [
@@ -29,6 +31,27 @@
             "default": "",
             "examples": [
                 "read a book for 30 minutes"
+            ]
+        },
+        "last_checked": {
+            "$id": "#/properties/last_checked",
+            "type": "string",
+            "format": "date",
+            "title": "The last_checked schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "1900-01-01",
+            "examples": [
+                "1900-01-01"
+            ]
+        },
+        "is_checked": {
+            "$id": "#/properties/is_checked",
+            "type": "boolean",
+            "title": "The is_checked schema",
+            "description": "is it checked.",
+            "default": false,
+            "examples": [
+                false
             ]
         }
     },

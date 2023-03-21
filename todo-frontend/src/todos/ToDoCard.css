@@ -1,3 +1,8 @@
 .ToDoCard {
     background-color: grey;
 }
+
+.ToDoCard.checked p, 
+.ToDoCard.checked .card-title {
+    text-decoration: line-through;
+}
