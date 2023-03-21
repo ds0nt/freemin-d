@@ -1,0 +1,17 @@
+  .nav-item {
+    text-align: center;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: green;
+  }
+  
+  nav a.active {
+    color: rgb(54, 82, 65) !important;;
+  }
+
+  .nav-link, nav a {
+    color: green;
+  }
+

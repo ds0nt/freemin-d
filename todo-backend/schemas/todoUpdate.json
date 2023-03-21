@@ -1,0 +1,36 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "title": "Read a book",
+            "habit_description": "Read for 30 minutes"
+        }
+    ],
+    "required": [
+
+    ],
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "todos's title",
+            "default": "",
+            "examples": [
+                "Read"
+            ]
+        },
+        "habit_description": {
+            "type": "string",
+            "description": "Detail explanation of the todo",
+            "default": "",
+            "examples": [
+                "read a book for 30 minutes"
+            ]
+        }
+    },
+    "additionalProperties": false
+}
